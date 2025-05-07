@@ -17,7 +17,13 @@ input.onButtonPressed(Button.B, function () {
 })
 let volume = 0
 let status = 0
-status = 1
-volume = 15
 dfplayermini.connect(SerialPin.P0, SerialPin.P1)
+dfplayermini.press(dfplayermini.playType.Stop)
+status = 0
+volume = 15
+while (pins.digitalReadPin(DigitalPin.P2) == 1) {
+    basic.showIcon(IconNames.No)
+}
+basic.showIcon(IconNames.Heart)
+status = 1
 dfplayermini.playFile(1, dfplayermini.isRepeat.No)
